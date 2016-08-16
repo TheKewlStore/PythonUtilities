@@ -60,6 +60,10 @@ def exists(path):
     return os.path.exists(path)
 
 
+def directory_name(path):
+    return os.path.dirname(path)
+
+
 def filename(path):
     """ Return the filename stripped off from the given path.
 
