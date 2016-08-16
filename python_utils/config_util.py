@@ -8,7 +8,7 @@ Author: Ian Davis
 
 from ConfigParser import ConfigParser
 
-from shared import os_util
+import os_util
 
 
 class InvalidSectionError(Exception):
