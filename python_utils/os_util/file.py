@@ -49,6 +49,10 @@ def make_directory(filepath):
         os.mkdir(filepath)
 
 
+def make_directories(filepath):
+    os.makedirs(filepath)
+
+
 def copy_directory_tree(directory_path, destination_directory_path, ignore_function=None):
     shutil.copytree(directory_path, destination_directory_path, ignore=ignore_function)
 
