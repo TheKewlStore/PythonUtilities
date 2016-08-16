@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='python_utilities',
-    version='1.0.4',
+    version='1.0.6',
     packages=(find_packages()),
     url = 'https://github.com/TheKewlStore/PythonUtilities',
     license = '',

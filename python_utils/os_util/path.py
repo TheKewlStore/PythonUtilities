@@ -83,6 +83,10 @@ def filenames(filepaths):
     return file_names
 
 
+def module_path(module_file):
+    return os.path.dirname(os.path.realname(module_file))
+
+
 def application_path():
     """ Get the path of the current application (handles bundled applications that set the "frozen" attribute).
 

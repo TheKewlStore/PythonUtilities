@@ -6,9 +6,9 @@
 Author: Ian Davis
 """
 
-from ConfigParser import ConfigParser
-
 import os_util
+
+from ConfigParser import ConfigParser
 
 
 class InvalidSectionError(Exception):
@@ -99,9 +99,10 @@ class Configuration(object):
         to said file.
     """
 
-    def __init__(self, file_path, sections=None):
+    def __init__(self, file_path, sections=None, default_sections=None):
         self.file_path = file_path
         self.sections = {}
+        self.default_sections = default_sections
 
         self.config_parser = ConfigParser()
 
@@ -117,13 +118,30 @@ class Configuration(object):
         if sections:
             self.add_sections(sections=sections)
 
+        if not self.default_sections:
+            self.default_sections = {}
+
+        self._verify_section_integrity()
+
     def _verify_section_integrity(self):
-        """ Verify that all sections and their default options exist in the configuration file.
+        """ Verify that all sections and their default options exist in the configuration file. """
+        needs_rewrite = False
 
-            Abstract implementation here as no default sections are defined.
+        for section_name, options in self.default_sections.iteritems():
+            if section_name not in self.sections:
+                self.add_section(name=section_name, options=options)
+                needs_rewrite = True
+                continue
 
-        """
-        pass
+            section = self.sections[section_name]
+
+            for option_name, option_value in options.iteritems():
+                if option_name not in section.options:
+                    needs_rewrite = True
+                    section.options[option_name] = option_value
+
+        if needs_rewrite:
+            self.write()
 
     def _setup_default_sections(self):
         """ Setup all default sections and their values for a first init.

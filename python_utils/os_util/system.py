@@ -226,6 +226,10 @@ def model_name():
         raise UnknownModelError()
 
 
+def add_python_path(path):
+    sys.path.append(path)
+
+
 BLANK_SECTION = '\xff'
 STYLE_START = '<SStyle>'
 STYLE_END = '</SStyle>'
