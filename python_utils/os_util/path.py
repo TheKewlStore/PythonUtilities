@@ -84,7 +84,7 @@ def filenames(filepaths):
 
 
 def module_path(module_file):
-    return os.path.dirname(os.path.realname(module_file))
+    return os.path.dirname(os.path.realpath(module_file))
 
 
 def application_path():
