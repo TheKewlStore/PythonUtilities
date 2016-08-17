@@ -30,7 +30,8 @@ class ThreadPool(QObject):
         """ Most important interface method, pass it a QThread object, and it will determine
             whether or not it can start the thread now (depending on how many threads are currently running),
             or add it to a queued list of threads that it will start when another thread finishes.
-        :param thread:
+            
+            :param thread: The QThread instance to start.
         """
         if len(self.current_threads) > self.max_threads:
             self.queued_threads.append(thread)
@@ -73,7 +74,8 @@ class ThreadPool(QObject):
             as popping a new thread from the queued list and starting it, if there
             are any. If there are no queued threads, it emits the finished signal,
             as all the threaded jobs are finished.
-        :param thread:
+            
+            :param thread: The QThread instance that is finished.
         """
         if thread in self.current_threads:
             self.current_threads.remove(thread)
@@ -117,7 +119,7 @@ class TargetThread(QObject):
     def wait(self, timeout):
         """ Wait a given time, in seconds, for our thread to terminate.
 
-        :param timeout: The time, in seconds, to wait.
+            :param timeout: The time, in seconds, to wait.
         """
         self._thread.wait(timeout)
 
