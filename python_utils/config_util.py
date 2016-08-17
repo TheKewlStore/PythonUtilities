@@ -1,7 +1,5 @@
 # coding=utf-8
-""" config is an API-Like module used currently by HTe that abstracts an
-    interface around ConfigParser to manage an application-wide configuration
-    file.
+""" Convenience wrappers for ConfigParser to make it behave like a dictionary, and make it easier to manage.
 
 Author: Ian Davis
 """

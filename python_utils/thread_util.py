@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience wrappers for pyqt Threads and ThreadPools.
 
 Author: Ian Davis
 """

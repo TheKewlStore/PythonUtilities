@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience functions for common pyqt operations.
 
 Author: Ian Davis
 """

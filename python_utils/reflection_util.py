@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience functions for common python reflection operations.
 
 Author: Ian Davis
 Last Updated: 11/17/2015

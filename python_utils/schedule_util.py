@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience wrappers for SchedulingJobs using pyqt QTimers.
 
 Author: Ian Davis
 """

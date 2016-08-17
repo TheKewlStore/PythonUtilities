@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience functions to manage and modify python lists and iterables.
 
 Author: Ian Davis
 """

@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Module Docstring.
+""" Convenience functions to simplify python logging module, and extend it's functionality. 
 
 Author: Ian Davis
 """
