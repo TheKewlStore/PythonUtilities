@@ -16,10 +16,10 @@ import os_util
 def animated_resize(widget, width=0, height=0):
     """ Perform an animated resize on the given widget to the given width and height.
 
-    :param widget: The widget to resize.
-    :param width: The width to resize too.
-    :param height: The height to resize too.
-    :return: The QPropertyAnimation object that was created and started.
+        :param widget: The widget to resize.
+        :param width: The width to resize too.
+        :param height: The height to resize too.
+        :return: The QPropertyAnimation object that was created and started.
     """
     animation = QPropertyAnimation(widget, 'size')
     animation.setEndValue(QSize(width, height))
@@ -29,29 +29,24 @@ def animated_resize(widget, width=0, height=0):
 
 
 def left_click(widget):
-    # noinspection PyArgumentList
-    """
+    """ Simulate a left click on the given QWidget instance.
 
-    :param widget:
+        :param widget: The QWidget to click.
     """
-    # noinspection PyArgumentList
     QTest.mouseClick(widget, Qt.LeftButton)
 
 
 def right_click(widget):
-    # noinspection PyArgumentList
-    """
+    """ Simulate a right click on the given QWidget instance.1
 
-    :param widget:
+    :param widget: The QWidget to click.
     """
-    # noinspection PyArgumentList
     QTest.mouseClick(widget, Qt.RightButton)
 
 
 def qt_application():
-    """
+    """ Shorthand to create a QApplication instance with the command line arguments.
 
-
-    :return:
+    :return: The new QApplication instance.
     """
     return QApplication(os_util.command_line_arguments())

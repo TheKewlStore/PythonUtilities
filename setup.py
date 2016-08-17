@@ -4,6 +4,7 @@ setup(
     name='python_utilities',
     version='1.0.10',
     packages=(find_packages()),
+    install_requires=['colorlog', ],
     url = 'https://github.com/TheKewlStore/PythonUtilities',
     license = '',
     author = 'Ian Davis',

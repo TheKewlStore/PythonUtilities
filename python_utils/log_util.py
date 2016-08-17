@@ -5,7 +5,6 @@ Author: Ian Davis
 """
 
 import logging
-import traceback
 import sys
 
 from colorlog import ColoredFormatter
@@ -14,12 +13,12 @@ from python_utils import os_util
 
 
 def initialize(name, filepath, level, console_output=False, log_colors=None):
-    """ Initialize logger settings.
+    """ Initialize logger settings for the logger name specified.
 
-    :param filepath: The path to the logfile to use.
-    :param level: The level to use for logging.
-    :param console_output: Flag to indicate whether or not to reflect log to console or not.
-    :param log_colors: Custom dictionary mapping level names to color types.
+        :param filepath: The path to the logfile to use.
+        :param level: The level to use for logging.
+        :param console_output: Flag to indicate whether or not to reflect log to console or not.
+        :param log_colors: Custom dictionary mapping level names to color types.
     """
     os_util.clear_file(filepath)
 

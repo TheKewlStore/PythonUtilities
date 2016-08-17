@@ -35,10 +35,9 @@ class ConfigurationSection(object):
     def __init__(self, name, options=None):
         """ ConfigurationSection constructor.
 
-            param name: Name of the section
-            param options: Optional parameter that should be
-                a dictionary of option_name: option_value for
-                this configuration section.
+            :param name: Name of the section
+            :param options: Optional parameter that should be a dictionary of option_name: option_value
+                 for this configuration section.
         """
         self.name = name
         self.options = options
@@ -54,7 +53,8 @@ class ConfigurationSection(object):
     def write(self, config_parser):
         """ Given a ConfigParser instance, add all of our option-values
             to our section to be written to file.
-        :param config_parser:
+            
+            :param config_parser: The ConfigParser to use to write with.
         """
         self._verify_section_exists(config_parser=config_parser)
 
@@ -64,7 +64,8 @@ class ConfigurationSection(object):
     def read_options(self, config_parser):
         """ Given a ConfigParser instance, read in all of the option value pairs
             for our section to our internal dictionary.
-        :param config_parser:
+            
+            :param config_parser: The ConfigParser instance to read from.
         """
         self.options = {}
 
@@ -82,8 +83,7 @@ class ConfigurationSection(object):
 
     def __setitem__(self, key, value):
         """ Python builtin handler for dictionary notation access
-            (ConfigurationSection[key] = value) ==
-                ConfigurationSection.__setitem__(key, value)
+            (ConfigurationSection[key] = value) == ConfigurationSection.__setitem__(key, value)
         """
         if key in self.options:
             self.options[key] = value
@@ -100,6 +100,12 @@ class Configuration(object):
     """
 
     def __init__(self, file_path, sections=None, default_sections=None):
+        """ Configuration initalizer.
+        
+            :param file_path: The path to the config file to read/write.
+            :param sections: A list of any initial ConfigSections to add.
+            :param default_sections: A dictionary of the initial section-key-values to add.
+        """
         self.file_path = file_path
         self.sections = {}
         self.default_sections = default_sections
@@ -155,7 +161,8 @@ class Configuration(object):
         """ Interface method to add multiple sections to our configuration
             file at once, call this to ensure that the sections are added
             to all data structures properly.
-        :param sections:
+            
+            :param sections: A list of ConfigurationSections to add.
         """
         for section_name, section in sections.items():
             self.sections[section_name] = section
@@ -167,8 +174,9 @@ class Configuration(object):
         """ Interface method to add a section to our configuration
             file at once, call this to ensure that the section is added
             to all data structures properly.
-        :param name:
-        :param options:
+
+            :param name: The name of the section to add.
+            :param options: Any options to add to the section.
         """
         section = ConfigurationSection(name=name, options=options)
         self.sections[name] = section
