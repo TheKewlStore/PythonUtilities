@@ -1,5 +1,5 @@
 # coding=utf-8
-""" Convenience functions to simplify python logging module, and extend it's functionality. 
+""" Convenience functions to simplify python logging module, and extend it's functionality.
 
 Author: Ian Davis
 """
@@ -9,7 +9,7 @@ import sys
 
 from colorlog import ColoredFormatter
 
-from python_utils import os_util
+from python_utilities import os_util
 
 
 def initialize(name, filepath, level, console_output=False, log_colors=None):
