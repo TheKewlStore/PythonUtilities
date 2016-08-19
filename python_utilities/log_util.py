@@ -40,12 +40,12 @@ def initialize(name, filepath, level, console_output=False, log_colors=None, reg
             'ERROR': 'red',
             'CRITICAL': 'red,bg_white'}
 
-    colored_formatter = ColoredFormatter('%(log_color)s[%(levelname)s-%(asctime)s]: %(message)s',
+    colored_formatter = ColoredFormatter('%(log_color)s[%(name)s][%(levelname)s-%(asctime)s]: %(message)s',
                                          datefmt="%Y-%m-%d %H:%M:%S",
                                          reset=True,
                                          log_colors=log_colors)
 
-    file_formatter = logging.Formatter('[%(levelname)s-%(asctime)s]: %(message)s',
+    file_formatter = logging.Formatter('[%(name)s][%(levelname)s-%(asctime)s]: %(message)s',
                                        datefmt="%Y-%m-%d %H:%M:%S")
 
     file_handler = RotatingFileHandler(filepath, mode='a', maxBytes=max_size*1024, backupCount=2)
