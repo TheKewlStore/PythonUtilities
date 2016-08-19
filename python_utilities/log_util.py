@@ -5,6 +5,7 @@ Author: Ian Davis
 """
 
 import logging
+import re
 import sys
 
 from colorlog import ColoredFormatter
@@ -12,13 +13,15 @@ from colorlog import ColoredFormatter
 from python_utilities import os_util
 
 
-def initialize(name, filepath, level, console_output=False, log_colors=None):
+def initialize(name, filepath, level, console_output=False, log_colors=None, regex_filter=None):
     """ Initialize logger settings for the logger name specified.
 
+        :param name: The name of the logger to initialize (can be None to configure the root logger).
         :param filepath: The path to the logfile to use.
         :param level: The level to use for logging.
         :param console_output: Flag to indicate whether or not to reflect log to console or not.
         :param log_colors: Custom dictionary mapping level names to color types.
+        :param regex_filter: Should be a regular expression string that will be matched against any records logged.
     """
     os_util.clear_file(filepath)
 
@@ -50,5 +53,16 @@ def initialize(name, filepath, level, console_output=False, log_colors=None):
     logger.setLevel(level)
     logger.addHandler(file_handler)
 
+    if regex_filter:
+        logger.addFilter(RegexFilter(regex_filter))
+
     if console_output:
         logger.addHandler(stream_handler)
+
+
+class RegexFilter(object):
+    def __init__(self, regex_pattern):
+        self.pattern = re.compile(regex_pattern)
+
+    def filter(self, record):
+        return bool(self.pattern.match(record.getMessage()))
