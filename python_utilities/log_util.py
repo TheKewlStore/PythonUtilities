@@ -48,7 +48,7 @@ def initialize(name, filepath, level, console_output=False, log_colors=None, reg
     file_formatter = logging.Formatter('[%(levelname)s-%(asctime)s]: %(message)s',
                                        datefmt="%Y-%m-%d %H:%M:%S")
 
-    file_handler = logging.RotatingFileHandler(filepath, mode='a', maxBytes=max_size*1024, backupCount=2)
+    file_handler = RotatingFileHandler(filepath, mode='a', maxBytes=max_size*1024, backupCount=2)
     stream_handler = logging.StreamHandler(sys.stdout)
 
     file_handler.setFormatter(file_formatter)
