@@ -10,4 +10,5 @@ setup(
     author = 'Ian Davis',
     author_email = 'thekewlstore@gmail.com',
     description = "A set of simple utility APIs for higher-level python functions.",
+    script_name = 'setup.py',
     )
