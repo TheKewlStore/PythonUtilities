@@ -9,12 +9,14 @@ import re
 import sre_constants
 import sys
 
+from logging.handlers import RotatingFileHandler
+
 from colorlog import ColoredFormatter
 
 from python_utilities import os_util
 
 
-def initialize(name, filepath, level, console_output=False, log_colors=None, regex_filter=None):
+def initialize(name, filepath, level, console_output=False, log_colors=None, regex_filter=None, max_size=100):
     """ Initialize logger settings for the logger name specified.
 
         :param name: The name of the logger to initialize (can be None to configure the root logger).
@@ -23,6 +25,7 @@ def initialize(name, filepath, level, console_output=False, log_colors=None, reg
         :param console_output: Flag to indicate whether or not to reflect log to console or not.
         :param log_colors: Custom dictionary mapping level names to color types.
         :param regex_filter: Should be a regular expression string that will be matched against any records logged.
+        :param max_size: The maximum size of the log file (in kilobytes, defaults to 100).
     """
     os_util.clear_file(filepath)
 
@@ -45,7 +48,7 @@ def initialize(name, filepath, level, console_output=False, log_colors=None, reg
     file_formatter = logging.Formatter('[%(levelname)s-%(asctime)s]: %(message)s',
                                        datefmt="%Y-%m-%d %H:%M:%S")
 
-    file_handler = logging.FileHandler(filepath, mode='w')
+    file_handler = logging.RotatingFileHandler(filepath, mode='a', maxBytes=max_size*1024, backupCount=2)
     stream_handler = logging.StreamHandler(sys.stdout)
 
     file_handler.setFormatter(file_formatter)
