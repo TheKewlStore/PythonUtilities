@@ -6,6 +6,7 @@ Author: Ian Davis
 
 import logging
 import re
+import sre_constants
 import sys
 
 from colorlog import ColoredFormatter
@@ -62,7 +63,10 @@ def initialize(name, filepath, level, console_output=False, log_colors=None, reg
 
 class RegexFilter(object):
     def __init__(self, regex_pattern):
-        self.pattern = re.compile(regex_pattern)
+        try:
+            self.pattern = re.compile(regex_pattern)
+        except sre_constants.error:
+            raise ValueError('Logging filter expression invalid!')
 
     def filter(self, record):
         return bool(self.pattern.match(record.getMessage()))
