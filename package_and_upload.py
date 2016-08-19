@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 import sys
 
 from setuptools import setup, find_packages
@@ -33,6 +34,9 @@ if __name__ == '__main__':
     exit_code = os.system('bumpversion {0}'.format(args.release_type))
     if exit_code:
         sys.exit(1)
+
+    if os.path.exists('./dist'):
+        shutil.rmtree('./dist/')
 
     from version import VERSION
 
