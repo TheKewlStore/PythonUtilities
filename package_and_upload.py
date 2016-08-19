@@ -4,8 +4,6 @@ import sys
 
 from setuptools import setup, find_packages
 
-VERSION = "1.0.15"
-
 
 def create_packages():
     setup(
@@ -35,6 +33,8 @@ if __name__ == '__main__':
     exit_code = os.system('bumpversion {0}'.format(args.release_type))
     if exit_code:
         sys.exit(1)
+
+    from version import VERSION
 
     create_packages()
     upload_packages()
