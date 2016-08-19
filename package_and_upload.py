@@ -1,6 +1,6 @@
 import argparse
-import pexpect
 import os
+import sys
 
 from setuptools import setup, find_packages
 
@@ -24,18 +24,18 @@ def create_packages():
 
 
 def upload_packages():
-    upload_process = pexpect.spawn('twine upload dist/*')
-    upload_process.expect(['username:'])
-    upload_process.sendline('TheKewlStore')
-    upload_process.expect(['password:'])
-    upload_process.sendline('Kewl1store')
+    os.system('twine upload dist/* --username TheKewlStore --password Kewl1store')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build script for PythonUtilities package.')
     parser.add_argument('release_type', help='The type of version build', choices=['patch', 'minor', 'major'])
     args = parser.parse_args()
-    os.system('bumpversion {0}'.format(args.release_type))
+
+    exit_code = os.system('bumpversion {0}'.format(args.release_type))
+    if exit_code:
+        sys.exit(1)
+
     create_packages()
     upload_packages()
 
